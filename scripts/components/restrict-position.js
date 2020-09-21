@@ -4,7 +4,7 @@ AFRAME.registerComponent('restrict-position', {
 
     init: function () {
         this.active = !AFRAME.utils.device.checkHeadsetConnected();
-        this.radius = 2;
+        this.radius = 2; // area user can move
     },
 
     tick: function (time, delta) {

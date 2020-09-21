@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! - A-Frame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://unpkg.com/super-hands@2.0.2/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="scripts/lib/jquery-3.3.1.min.js"></script>
+
+    <script src="build/build.js"></script>
+    <style>
+      iframe {
+        width: 1024px;
+        height: 2048px;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+          <a-mixin id="controller"
+                   physics-collider
+                   super-hands="colliderEvent: collisions;
+                              colliderEventProperty: els;
+                              colliderEndEvent: collisions;
+                              colliderEndEventProperty: clearedEls"
+                   collision-filter = "group: hands;
+                                     collidesWith: red, blue;
+                                     collisionForces: false">
+          </a-mixin>
+          <audio id="voice-1Wav" src="assets/sound/voice-1.wav"  crossorigin="anonymous"></audio>
+      </a-assets>
+
+
+      <a-entity light="color: #ff0000; groundColor: #800000; type: point" position=""
+                animation="property: position;dur:2000;loop:true;easing: linear;from: 0 0 0; to: 0 2 0"
+      ></a-entity>
+      <a-entity light="type: ambient; color: #BBB"></a-entity>
+      <a-entity light="type: spot; angle: 85.55; intensity: 0.57; distance: 5.65" rotation="-90 0" position="0 3.141 0"></a-entity>
+
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" shadow></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D" shadow></a-cylinder>
+
+<!--      <a-entity elevator-model="" id="elevator_o" obj-model="obj: url(3D/elevator.obj); mtl: url(3D/elevator.mtl)" scale="1 1 1" rotation="0 180 0">-->
+
+      <a-plane id="floor" position="0 0 -4"  static-body rotation="-90 0" width="6" height="11" color="#7BC8A4" class="collidable" geometry="" material=""></a-plane>
+
+      <a-sky src="assets/sky/sky.jpg"></a-sky>
+
+      <!--restrict-position-->
+      <a-entity id="player"
+                width="1"
+                height="1.6"
+                position="0 1.6 0"
+                camera position="0 1.6 0"
+                wasd-controls
+                look-controls
+                restrict-position
+                shoot="direction: 0 0 -1; spaceKeyEnabled: true">
+
+        <a-entity cursor="fuse: true; fuseTimeout: 500"
+                  raycaster="objects: [data-clickable]"
+                  position="0 0 -1"
+                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                  material="color: #f1d507; shader: flat">
+        </a-entity>
+        <a-entity id="leftHand" shoot-controls="" weapon="" shoot="" vive-controls="model:false" oculus-touch-controls="model:false" windows-motion-controls="hand:left;model:false" obj-model="obj: url(3D/gear_vr_controller.obj); mtl: url(3D/gear_vr_controller.mtl)" sound="on:shoot;poolSize:10;src:assets/sound/Click.wav;volume:0.5"><a-entity light="color:#24CAFF;intensity:0;type:point" position="0 -0.22 -0.14"></a-entity></a-entity>
+        <a-entity id="rightHandPivot">
+          <a-entity id="rightHand" shoot-controls="hand:right" weapon="" shoot="" vive-controls="hand:right;model:false" oculus-touch-controls="hand:right;model:false" windows-motion-controls="model:false" daydream-controls="hand:right;model:false" gearvr-controls="hand:right;model:false" obj-model="obj: url(3D/gear_vr_controller.obj); mtl: url(3D/gear_vr_controller.mtl)" sound="on:shoot;poolSize:10;src:assets/sound/Click.wav;volume:0.5"><a-entity light="color:#24CAFF;intensity:0;type:point" position="0 -0.22 -0.14"></a-entity></a-entity>
+        </a-entity>
+
+      </a-entity>
+
+    </a-scene>
+
+  </body>
+</html>
