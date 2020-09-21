@@ -1,9 +1,9 @@
 ## Getting Started
 
 ### Download the ZIP kit 📦
-[<img src="http://i.imgur.com/UVPZoM0.png" width="200">](https://github.com/aframevr/aframe-boilerplate/archive/master.zip)
+[<img src="http://i.imgur.com/UVPZoM0.png" width="200">](https://github.com/Zipexpo/aframe-boilerplate-webpack/archive/1.zip)
 
-After you have __[downloaded and extracted this `.zip` file](https://github.com/aframevr/aframe-boilerplate/archive/master.zip)__ containing the contents of this repo, open the resulting directory, and you'll be have your scene ready in these few steps:
+After you have __[downloaded and extracted this `.zip` file](https://github.com/Zipexpo/aframe-boilerplate-webpack/archive/1.zip)__ containing the contents of this repo, open the resulting directory, and you'll be have your scene ready in these few steps:
 
     npm install && npm start
     open http://localhost:8080/
